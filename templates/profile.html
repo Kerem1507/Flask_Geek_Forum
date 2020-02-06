@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Your Profile</h3>
+<small>Welcome, {{session["username"]}}</small>
+<hr>
+<h2><b>Username:</b> {{session["username"]}}</h2>
+<br>
+<a href="/edit">
+    <button type="submit" class="btn btn-warning">Edit Profile</button>
+</a>
+<a href="/upload">
+    <button type="submit" class="btn btn-success">Add/Change Profile Picture</button>
+</a>
+<hr>
+<h4>Your Posts</h4>
+{% if articles %}
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Created Date</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for article in articles %}
+          <tr>
+              <td><a href="/article/{{article.id}}">{{article.title}}</a></td>
+              <td>{{article.created_date}}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% else %}
+<div class = "alert alert-danger">You have no post yet!</div>
+{% endif %}
+{% endblock body %}

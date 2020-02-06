@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<h3>Posts</h3>
+<hr>
+
+{% if articles %}
+<form action="/search" method = "POST">
+    <input name = "keyword" class="search_input" type="text" name="" placeholder="Keyword">
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+<hr>
+
+<ul class="list-group">
+    {% for article in articles %}
+    <li class = "list-group-item"><a href="/article/{{article.id}}">{{article.title}}</a></li>
+    {% endfor %}
+</ul>
+
+{% else %}
+<div class = "alert alert-danger">There is no post in here yet!</div>
+{% endif %}
+
+{% endblock body %}
